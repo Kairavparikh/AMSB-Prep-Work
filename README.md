@@ -4,22 +4,12 @@ A modern library management system built with CodeIgniter 4, featuring:
 
 - Book management (Add, Edit, Delete)
 - Cover image upload support
-- Modern, responsive UI
 - MySQL database integration
 
 ## Features
 
 - Complete CRUD operations for books
 - Image upload and management
-- Clean, modern user interface
-- Responsive design
-- Database integration with MySQL
-
-## Requirements
-
-- PHP 8.0 or higher
-- MySQL 5.7 or higher
-- Composer
 
 ## Installation
 
