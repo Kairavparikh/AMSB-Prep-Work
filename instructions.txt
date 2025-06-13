@@ -1,0 +1,120 @@
+PHP Project Setup Instructions
+============================
+
+This document explains how to set up and run this PHP project, assuming no prior knowledge of the technologies used.
+
+Technologies Used
+----------------
+1. PHP: A popular programming language for web development
+2. MySQL: A database system to store data
+3. CodeIgniter: A PHP framework that provides tools and libraries for web development
+4. Docker (Optional): A tool that helps run applications in isolated environments
+
+Project Structure
+----------------
+The project is organized into several key directories:
+- app/: Contains the main application code
+- public/: Contains files that are directly accessible from the web
+- tests/: Contains test files to ensure code quality
+- system/: Contains the CodeIgniter framework core files
+- writable/: Contains files that the application needs to write to (like logs)
+
+Setting Up the Project
+---------------------
+You can set up the project in two ways:
+
+Method 1: Direct PHP Setup (Recommended for Development)
+-----------------------------------------------------
+1. Install Required Software:
+   - Install PHP 8.4 or later from https://www.php.net/downloads.php
+   - Install MySQL 8.0 or later from https://dev.mysql.com/downloads/mysql/
+   - Install Composer (PHP package manager) from https://getcomposer.org/
+
+2. Project Setup:
+   - Clone or download this project to your computer
+   - Open a terminal/command prompt
+   - Navigate to the project directory
+   - Run the following command to start the application:
+     php spark serve
+
+3. Accessing the Application:
+   - Once the setup is complete, open your web browser
+   - Go to http://localhost:8080 (or http://localhost:8081 if 8080 is in use)
+   - You should see the application running
+
+Method 2: Docker Setup (Alternative)
+----------------------------------
+1. Install Required Software:
+   - Install Docker Desktop from https://www.docker.com/products/docker-desktop
+
+2. Project Setup:
+   - Clone or download this project to your computer
+   - Open a terminal/command prompt
+   - Navigate to the project directory
+   - Run the following command to start the application:
+     docker-compose up --build
+
+3. Accessing the Application:
+   - Once the setup is complete, open your web browser
+   - Go to http://localhost:8080
+   - You should see the application running
+
+Understanding the Components
+--------------------------
+1. Database:
+   - The application uses MySQL to store data
+   - Database configuration is in app/Config/Database.php
+   - Make sure MySQL is running before starting the application
+
+2. Application Code:
+   - Controllers (app/Controllers/): Handle user requests
+   - Models (app/Models/): Manage data and database interactions
+   - Views (app/Views/): Define how the application looks
+   - Config (app/Config/): Contains configuration settings
+
+Common Issues and Solutions
+-------------------------
+1. If the application doesn't start (Direct PHP):
+   - Make sure PHP is installed and in your system's PATH
+   - Check if ports 8080 and 8081 are available
+   - Try using a different port: php spark serve --port 8082
+
+2. If the application doesn't start (Docker):
+   - Make sure Docker Desktop is running
+   - Check if ports 8080 and 3306 are available
+   - Try running 'docker-compose down' and then 'docker-compose up --build'
+
+3. If you can't connect to the database:
+   - Make sure MySQL is running
+   - Verify the database credentials in app/Config/Database.php
+   - Check if the database exists and is accessible
+
+4. If you see a blank page:
+   - Check the application logs in the writable/logs directory
+   - Make sure all required files are present
+   - Verify that the web server is running
+
+Development Workflow
+------------------
+1. Making Changes:
+   - Edit files in your preferred code editor
+   - Changes to PHP files will be reflected immediately
+   - For Docker configuration changes, you'll need to rebuild
+
+2. Running Tests:
+   - Use the command: php spark test
+   - This will run all tests in the tests/ directory
+
+3. Debugging:
+   - Check the logs in writable/logs
+   - Use the browser's developer tools
+   - Add logging statements in your code
+
+Additional Resources
+------------------
+- PHP Documentation: https://www.php.net/docs.php
+- CodeIgniter Documentation: https://codeigniter.com/user_guide/
+- Docker Documentation: https://docs.docker.com/
+- MySQL Documentation: https://dev.mysql.com/doc/
+
+Remember: This is a development environment setup. For production deployment, you would need to set up a proper web server like Apache or Nginx. 

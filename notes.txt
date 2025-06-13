@@ -1,0 +1,97 @@
+# Library Management Application - Project Notes
+
+## Overview
+This is a CRUD (Create, Read, Update, Delete) web application for managing library books, built with CodeIgniter 4 (PHP framework). It allows users to add, view, edit, and delete books, including uploading cover images.
+
+---
+
+## Project Structure & Key Files
+
+- **app/Controllers/Book.php**: Main controller for book management. Handles listing, creating, storing, editing, updating, and deleting books. Uses the Book model for database operations and loads views for user interaction.
+- **app/Models/Book.php**: Model representing the `books` table. Defines allowed fields, validation rules, and handles database CRUD operations for books.
+- **app/Views/books/**: Contains the views for listing (`index.php`), creating (`create.php`), and editing (`edit.php`) books. Uses Bootstrap for styling.
+- **app/Database/Migrations/2025-06-12-200854_CreateBooksTable.php**: Migration file that defines the structure of the `books` table (id, title, author, genre, publication_year, cover_image, timestamps).
+- **app/Config/Database.php**: Database connection settings (host, username, password, database name, driver).
+- **app/Config/Routes.php**: Defines the URL routes for the application (e.g., `/books`, `/books/create`, etc.).
+
+---
+
+## How the Application Works
+
+### 1. **Routing**
+- Defined in `app/Config/Routes.php`.
+- Maps URLs to controller methods:
+  - `/books` → `Book::index` (list all books)
+  - `/books/create` → `Book::create` (show add form)
+  - `/books/store` → `Book::store` (handle add form submission)
+  - `/books/edit/{id}` → `Book::edit` (show edit form)
+  - `/books/update/{id}` → `Book::update` (handle edit form submission)
+  - `/books/delete/{id}` → `Book::delete` (delete a book)
+
+### 2. **Controller (Book.php)**
+- **index()**: Fetches all books and loads the list view.
+- **create()**: Loads the form to add a new book.
+- **store()**: Validates input, handles file upload, inserts a new book.
+- **edit($id)**: Loads the form to edit a book.
+- **update($id)**: Validates input, handles file upload, updates the book.
+- **delete($id)**: Deletes the book by ID.
+
+### 3. **Model (Book.php)**
+- Represents the `books` table.
+- Handles validation and CRUD operations.
+- Fields: title, author, genre, publication_year, cover_image, created_at, updated_at.
+
+### 4. **Views**
+- **index.php**: Lists all books with options to edit/delete. Shows cover images if available.
+- **create.php**: Form to add a new book (fields: title, author, genre, year, cover image).
+- **edit.php**: Form to edit an existing book (pre-fills current data).
+
+### 5. **Migration**
+- **2025-06-12-200854_CreateBooksTable.php**: Defines the schema for the `books` table. Run with `php spark migrate`.
+
+---
+
+## Tools & Commands Used
+
+- **CodeIgniter 4**: PHP framework for MVC structure and routing.
+- **PHP**: Server-side scripting language.
+- **MySQL**: Database for storing book records.
+- **Bootstrap**: CSS framework for responsive UI.
+- **php spark serve**: Starts the local development server.
+- **php spark migrate**: Runs database migrations.
+- **php spark make:migration**: Creates a new migration file.
+- **php spark make:model**: Creates a new model file.
+- **php spark make:controller**: Creates a new controller file.
+
+---
+
+## How to Set Up the Database
+1. Create the database in MySQL:
+   ```sql
+   CREATE DATABASE library_db;
+   ```
+2. Configure `app/Config/Database.php` with your MySQL credentials.
+3. Run migrations:
+   ```bash
+   php spark migrate
+   ```
+
+---
+
+## How to Run the Application
+1. Start the server:
+   ```bash
+   php spark serve
+   ```
+2. Visit [http://localhost:8080/books](http://localhost:8080/books) in your browser.
+
+---
+
+## Additional Notes
+- Uploaded cover images are stored in the `uploads/` directory (make sure it is writable).
+- Validation errors are shown on the forms if input is invalid.
+- You can extend the app by adding more fields or features (e.g., search, user authentication).
+
+---
+
+*This file explains the structure, code, and tools used in the project. For more details, check the individual files mentioned above.* 
